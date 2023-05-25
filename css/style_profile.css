@@ -1,0 +1,110 @@
+body
+{
+ font-family: Arial, sans-serif;
+ background: rgba(24,36,56,0.9);
+}
+
+.container
+{
+  max-width: 1050px;
+  margin: 0 auto;
+  height: 800px;
+  margin-top: 80px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.top-bar
+{
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.logout-button
+{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.logout-button:hover
+{
+  background-color: #c82333;
+}
+
+h1
+{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-picture
+{
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info
+{
+  margin-top: 20px;
+}
+
+.button
+{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out;
+  margin-bottom: 30px;
+}
+
+.button:hover
+{
+  background-color: #0062cc;
+}
+
+.info-row
+{
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.info-label
+{
+  flex-basis: 150px;
+  font-weight: bold;
+}
+
+.info-value
+{
+  flex-grow: 1;
+}
+
+.calendar
+{
+  text-align: center;
+  padding-top: 55px;
+  border: 1px groove;
+  border-radius: 10px;
+}
+
+.calendar:hover
+{
+  transform: scale(1.01);
+  cursor: pointer;
+}

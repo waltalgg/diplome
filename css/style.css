@@ -1,0 +1,268 @@
+* {
+   margin: 0;
+   box-sizing: border-box;
+}
+
+@font-face
+{
+	font-family: "Font1";
+	src: url("../fonts/MultiroundPro.otf");
+	font-family: "Font_hub";
+	src: url("../fonts/MontserratAlternates-BoldItalic.ttf");
+
+}
+
+
+body
+{
+  background: url(../images/hubf.jpg) no-repeat,
+  url(../images/hubf3.jpg) center no-repeat,
+  url(../images/hubf2.jpg) bottom center no-repeat;
+}
+
+a.menu-link
+{
+    display: none;
+}
+
+.main-header
+{
+    background-color: rgba(22,34,57,0.95);
+    height: 80px;
+    position: fixed;
+    z-index: 12;
+    width: 100%;
+    top: 0;
+}
+
+.main-header .logo
+{
+    float: left;
+    line-height: 80px;
+    padding-left: 60px;
+}
+
+.main-header .logo a
+{
+    font-size: 36px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+}
+
+.main-header .logo a em
+{
+    font-style: normal;
+    color: #E0FF61;
+    font-weight: bold;
+}
+
+.main-menu
+ {
+    float: right;
+    padding-right: 60px;
+}
+
+.main-menu li
+{
+    display: inline-block;
+    line-height: 79px;
+    margin-left: 15px;
+    position: relative;
+}
+
+.main-menu li:first-child
+{
+    margin-left: 0px;
+}
+
+.main-menu li a
+{
+    padding: 10px 15px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    color: #fff;
+    border: 2px solid transparent;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+
+.main-menu li
+{
+    font-size: 12px;
+    font-weight: 500;
+    padding: 0px 15px;
+    letter-spacing: 0.5px;
+    border: none;
+    transition: all 0.5s;
+}
+
+.main-menu li:hover
+ {
+    color: #f5a425;
+    border: none;
+}
+
+.main-nav li:hover a,
+.main-nav li.active a
+{
+    border: 2px solid #BC254D;
+}
+
+@media (max-width: 950px)
+{
+  .main-nav li:hover a,
+  .main-nav li.active a
+  {
+    border: 2px solid transparent;
+    border-bottom: 1px solid rgba(250,250,250,0.25);
+  }
+}
+
+.news
+ {
+  margin-top: 250px;
+  margin-left: 22%;
+  width: 58%;
+  padding: 15px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+.news-template
+{
+  margin-top: 20px;
+  border-top: 1px solid #c2cccc;
+  padding-top: 20px;
+
+}
+
+.news-template h3
+{
+  margin-bottom: 10px;
+}
+
+.news-template p
+ {
+  margin-bottom: 10px;
+}
+
+.news-template small
+{
+  color: #999;
+}
+
+.courses-block
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 15%;
+  padding-top: 55px;
+  padding-bottom: 55px;
+
+}
+
+.course
+{
+  width: 25%;
+  padding: 10px;
+  margin: 25px;
+  background-color: rgba(102, 44, 238, 0.15);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0px 4px 5px 0px rgba(255,255,255);
+  transition: transform 0.3s ease-in-out;
+
+}
+
+.course a
+{
+  font-weight: bold;
+}
+
+.course h3
+{
+  border-bottom: 1px solid;
+}
+
+.course-block
+{
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: justify;
+  text-indent: 25px;
+}
+
+.course-info
+{
+  background-color: #f2f2f2;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.course:hover
+{
+  transform: scale(1.15);
+  cursor: pointer;
+    background-color: rgba(102, 44, 238, 0.35);
+}
+
+.calendar-z
+{
+  margin-bottom: 10px;
+  font-style: italic;
+  font-size: 24px;
+  text-align: center;
+}
+
+.calendar
+{
+  box-shadow: 5px;
+  border-radius: 10px;
+  margin-top: 3%;
+  margin-left: 22%;
+  margin-right: 20%;
+  margin-top: 8%;
+  background-color: #f2f2f2;
+  text-align: center;
+  justify-content: center;
+  padding: 4%;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  transition: transform 0.3s ease-in-out;
+
+}
+
+.calendar:hover
+{
+  transform: scale(1.08);
+  cursor: pointer;
+}
+
+@media (max-width: 1200px)
+{
+    .head_calendar
+    {
+        margin-left: 39%;
+        font-size: 32pt;
+    }
+
+    .calendar-z
+    {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 1000px)
+{
+  .main-header .logo a
+  {
+      font-size: 16px;
+  }
+}
