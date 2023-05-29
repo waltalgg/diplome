@@ -9,15 +9,16 @@
 	src: url("../fonts/MultiroundPro.otf");
 	font-family: "Font_hub";
 	src: url("../fonts/MontserratAlternates-BoldItalic.ttf");
-
 }
 
 
 body
 {
-  background: url(../images/hubf.jpg) no-repeat,
-  url(../images/hubf3.jpg) center no-repeat,
-  url(../images/hubf2.jpg) bottom center no-repeat;
+  background: url(../images/hubf.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
 }
 
 a.menu-link
@@ -164,6 +165,7 @@ a.menu-link
   margin-top: 15%;
   padding-top: 55px;
   padding-bottom: 55px;
+  background-color: rgba(244,241,244,0.6);
 
 }
 
@@ -172,12 +174,15 @@ a.menu-link
   width: 25%;
   padding: 10px;
   margin: 25px;
-  background-color: rgba(102, 44, 238, 0.15);
   border: 1px solid #ccc;
   border-radius: 5px;
   text-align: center;
   box-shadow: 0px 4px 5px 0px rgba(255,255,255);
-  transition: transform 0.3s ease-in-out;
+  display: inline-block;
+  height: 200px;
+  word-wrap: break-word;
+  overflow-x:hidden;
+  background-color: rgba(255,255,255,0.2);
 
 }
 
@@ -211,52 +216,6 @@ a.menu-link
 {
   transform: scale(1.15);
   cursor: pointer;
-    background-color: rgba(102, 44, 238, 0.35);
-}
-
-.calendar-z
-{
-  margin-bottom: 10px;
-  font-style: italic;
-  font-size: 24px;
-  text-align: center;
-}
-
-.calendar
-{
-  box-shadow: 5px;
-  border-radius: 10px;
-  margin-top: 3%;
-  margin-left: 22%;
-  margin-right: 20%;
-  margin-top: 8%;
-  background-color: #f2f2f2;
-  text-align: center;
-  justify-content: center;
-  padding: 4%;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-  transition: transform 0.3s ease-in-out;
-
-}
-
-.calendar:hover
-{
-  transform: scale(1.08);
-  cursor: pointer;
-}
-
-@media (max-width: 1200px)
-{
-    .head_calendar
-    {
-        margin-left: 39%;
-        font-size: 32pt;
-    }
-
-    .calendar-z
-    {
-        font-size: 16px;
-    }
 }
 
 @media (max-width: 1000px)

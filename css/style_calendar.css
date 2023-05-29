@@ -1,108 +1,65 @@
-.calendar-item
+.calendar_month
 {
-	width: 700px;
-	display: inline-block;
-	vertical-align: top;
-	margin: 0 16px 20px;
-	font: 14px/1.2 Arial, sans-serif;
-
-}
-.calendar-head
- {
-	text-align: center;
-	padding: 5px;
-	font-weight: 700;
-	font-size: 14px;
+	float: left;
+	margin-top: 14%;
+	width: 18%;
+	margin-left: 50px;
+	background-color: rgba(255,255,255,0.9);
+	border: 2px solid #ccc;
+	border-radius: 10px;
+	position: fixed;
 }
 
-.calendar-item table
+.calendar_month table
 {
-	border-collapse: collapse;
-	width: 100%;
-  table-layout: fixed;
+      margin: 0 auto;
+			margin-top: 15px;
+			margin-bottom: 25px;
+			table-layout: fixed;
 }
 
-.calendar-item th
-{
-	font-size: 12px;
-	padding: 6px 7px;
-	text-align: center;
-	color: #888;
-	font-weight: normal;
-}
+.calendar_month table td,
+.calendar_month table th
+		{
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+			cursor: pointer;
+    }
 
-.calendar-item td
-{
-	font-size: 13px;
-	padding: 6px 5px;
-	text-align: center;
-	border: 2px solid #BBBBFB;
-}
+.calendar_month table th
+	  {
+      background-color: #4CAF50;
+      color: white;
+    }
 
-.calendar-item tr th:nth-child(6), .calendar-item tr th:nth-child(7),
-.calendar-item tr td:nth-child(6), .calendar-item tr td:nth-child(7)
-{
-	color: #e65a5a;
-}
 
-.calendar-day.last
-{
-	color: #999 !important;
-}
-.calendar-day.today
-{
-	font-weight: bold;
-}
+.td_cl:hover
+	{
+		background-color: rgba(122,122,133, 0.3);
+	}
 
-.calendar-day.event
-{
-	background: #ffe2ad;
-	position: relative;
-	cursor: pointer;
-}
+	@media (max-width: 1570px)
+	{
+		.calendar_month table
+		{
+			font-size: 14px;
+		}
 
-.calendar-day.event:hover .calendar-popup
-{
-	display: block;
-}
+	}
+	@media (max-width: 1470px)
+	{
+		.calendar_month table
+		{
+			font-size: 10px;
+		}
 
-.calendar-popup
-{
-	display: none;
-	position: absolute;
-	top: 40px;
-	left: 0;
-	min-width: 200px;
-	padding: 15px;
-	background: #fff;
-	text-align: left;
-	font-size: 13px;
-	z-index: 100;
-	box-shadow: 0 0 10px rgba(0,0,0,0.5);
-	color: #000;
-}
-
-.calendar-popup:before
-{
-	content: "";
-	border: solid transparent;
-	position: absolute;
-	left: 8px;
-	bottom: 100%;
-	border-bottom-color: #fff;
-	border-width: 9px;
-	margin-left: 0;
-}
+	}
 
 @media (max-width: 1300px)
 {
-   .calendar-item
-	 {
-    	width: 350px;
-   }
-
-   .calendar-item th
-  {
-   	font-size: 10px;
-   }
+	.calendar_month
+	{
+		display: none;
+	}
 }
