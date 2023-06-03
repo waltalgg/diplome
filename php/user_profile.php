@@ -16,6 +16,7 @@
     <div class="profile-info">
       <div>
         <a class="button" href="#">Редактировать профиль</a>
+        <a href="account_profile.php" class="button" style="background: rgb(0,140,0); margin-left: 6px;"> Личный кабинет </a>
       </div>
       <div class="info-row">
         <div class="info-label">Имя профиля:</div>
@@ -30,16 +31,6 @@
         <div class="info-label">Курс</div>
         <div class="info-value">Название курса</div>
       </div>
-      <br> <br> <br>
-      <div class="calendar">
-
-        <?php
-        require('calendar.php');
-        echo Calendar::getInterval(date('n.Y'), date('n.Y'));
-        ?>
-
-      </div>
-
       </div>
     </div>
   </div>

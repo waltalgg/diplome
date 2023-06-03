@@ -1,23 +1,28 @@
 <link rel="stylesheet" href="../css/style_calendar.css">
 <?php
-// местоположение скрипта
+
 $self = $_SERVER['years_calendar'];
 
-if(isset($_GET['month']))
+if($_GET['month'])
   $month = $_GET['month'];
-elseif(isset($_GET['viewmonth']))
+elseif($_GET['viewmonth'])
   $month = $_GET['viewmonth'];
 else $month = date('m');
 
-if(isset($_GET['year']))
+if($_GET['year'])
   $year = $_GET['year'];
-elseif(isset($_GET['viewyear']))
+elseif($_GET['viewyear'])
   $year = $_GET['viewyear'];
 else $year = date('Y');
 
 if($month == '12')
-$next_year = $year + 1;
-else $next_year = $year;
+{
+  $next_year = $year + 1;
+}
+else
+{
+  $next_year = $year;
+}
 
 $Month_r = array(
 "1" => "январь",
@@ -33,16 +38,17 @@ $Month_r = array(
 "11" => "ноябрь",
 "12" => "декабрь");
 
-$first_of_month = mktime(0, 0, 0, $month, 1, $year);
+$first_month = mktime(0, 0, 0, $month, 1, $year);
 
-// Массив имен всех дней в неделю
 $day_headings = array('Sunday', 'Monday', 'Tuesday',
 'Wednesday', 'Thursday', 'Friday', 'Saturday');
 
-$maxdays = date('t', $first_of_month);
-$date_info = getdate($first_of_month);
+$maxdays = date('t', $first_month);
+$date_info = getdate($first_month);
 $month = $date_info['mon'];
 $year = $date_info['year'];
+$today_month = date('m');
+$today_year = date('y');
 
 if($month == '1')
 {
@@ -53,17 +59,23 @@ else
 $last_year = $year;
 }
 
-$timestamp_last_month = $first_of_month - (24*60*60);
+$timestamp_last_month = $first_month - (86400);
 $last_month = date("m", $timestamp_last_month);
 
 if($month == '12')
-$next_month = '1';
-else $next_month = $month+1;
+{
+  $next_month = '1';
+}
+
+else
+{
+  $next_month = $month+1;
+}
 
 $calendar = "
 <div class = 'calendar_month'>
-<table>
-<tr style='background: #5C8EB3;'>
+<table class='calendar_month_table'>
+<tr style='background: #5A8EB5;'>
     <td colspan='7'>
         <a style='margin-right: 50px; color: #ffffff; font-size: 18px; padding: 10px;'
         href='$self?month=".$last_month."&year=".$last_year."'><<</a>
@@ -87,36 +99,48 @@ $calendar = "
 
 
 $weekday = $date_info['wday'];
-
 $weekday = $weekday-1;
-if($weekday == -1) $weekday=6;
+if($weekday == -1)
+{
+  $weekday=6;
+}
 
 $day = 1;
 
 if($weekday > 0)
-$calendar .= "<td colspan='$weekday'> </td>";
+{
+  $calendar .= "<td colspan='$weekday'> </td>";
+}
 
 while($day <= $maxdays)
 {
-if($weekday == 7) {
-    $calendar .= "</tr><tr>";
-$weekday = 0;
-}
-
+    if($weekday == 7)
+    {
+      $calendar .= "</tr><tr>";
+      $weekday = 0;
+    }
+    
 $linkDate = mktime(0, 0, 0, $month, $day, $year);
 
-if($weekday == 5 || $weekday == 6) $red='style="color: red" ';
-else $red='';
+    if($weekday == 5 || $weekday == 6)
+      {
+        $red='style="color: red" ';
+      }
+      else
+      {
+        $red='';
+      }
 
 $calendar .= "
     <td class='td_cl'><span ".$red.">{$day}</span>
     </td>";
-$day++;
-$weekday++;
+    $day++;
+  $weekday++;
 }
 
 if($weekday != 7)
 $calendar .= "<td colspan='" . (7 - $weekday) . "'> </td>";
 
-// выводим сам календарь
-echo $calendar . "</tr></table></div>";
+$calendar .= "</tr></table>
+<div class='today_style'>
+<a style='font-weight: bold;' href='$self?month=".$today_month."&year=".$today_year."'>Сегодня</a></div></div>";
