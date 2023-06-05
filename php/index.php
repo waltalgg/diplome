@@ -17,8 +17,8 @@
       <a href="#menu" class="menu-link"></a>
       <nav id="menu" class="main-nav" role="navigation">
         <ul class="main-menu">
+          <li><a href="account_profile.php">Личный кабинет (ь)</a></li>
           <li><a href="user_profile.php">Профиль (ь)</a></li>
-          <li><a href="#courses">Курсы</a></li>
           <li><a href="form_login.php">Войти</a></li>
         </ul>
       </nav>
@@ -50,10 +50,9 @@
       <div class="course">
         <h3><a href="#">Курс по HTML и CSS</a></h3>
         <div class="course-block">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-           incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          rure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum.
+          Наш курс по HTML и CSS подходит для всех, кто хочет научиться создавать веб-страницы,
+          включая начинающих и тех, кто уже имеет опыт веб-разработки. Мы предоставляем все необходимые материалы и ресурсы,
+          чтобы вы могли максимально использовать свое время и получить максимум знаний.
         </div>
       </div>
 
@@ -76,15 +75,6 @@
           in culpa qui officia deserunt mollit anim id est laborum.
         </div>
       </div>
-    </div>
-
-
-    <div class="calendar">
-      <p class="calendar-z"> Календарь занятий:</p>
-      <?php
-      require('calendar.php');
-      echo Calendar::getInterval(date('n.Y'), date('n.Y'));
-      ?>
     </div>
 
     <br><br><br><br>  <br><br><br><br>

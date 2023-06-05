@@ -1,0 +1,64 @@
+.calendar7
+{
+ width: 70%;
+ border-collapse: collapse;
+ margin-top: 1%;
+ margin-right: 25px;
+ float: right;
+ box-shadow: 0 0 30px rgba(247,247,247,0.9);
+}
+
+.data
+{
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.time
+{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.calendar7 th,
+.calendar7 td
+{
+ padding: 10px;
+ text-align: center;
+ border: 1px solid #ccc;
+ border-radius: 2px;
+ background-color: rgba(255,255,255,0.9);
+}
+
+.calendar7 th
+{
+ background-color: #4CAF50;
+ font-weight: bold;
+}
+
+.subject
+{
+ background-color: #fff;
+ border: 3px solid #00acf1;
+ border-radius: 10px;
+ padding: 12px;
+ font-size: 18px;
+}
+
+.subject .name
+{
+ font-weight: bold;
+ margin-bottom: 5px;
+}
+
+.subject .teacher
+{
+ font-style: italic;
+}
+
+.subject:hover
+{
+  cursor: pointer;
+  background-color: rgba(66,255,0,0.4);
+}
