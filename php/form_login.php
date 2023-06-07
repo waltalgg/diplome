@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once 'connect.php';
+require_once 'connect.php'; 
+ 
 ?>
 
 <!DOCTYPE html>
@@ -23,8 +24,8 @@ require_once 'connect.php';
    <label for="password">Пароль</label>
  </div>
  <div class="login">
-   <p style="color: red;"><b><i> <?
-   echo $_SESSION['error_mes'];
+   <p style="color: red;"><b><i> <?php
+   echo $_SESSION['error_mes']; 
    unset($_SESSION['error_mes']);
                                  ?></i></b></p>
 </div>

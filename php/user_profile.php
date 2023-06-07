@@ -33,11 +33,6 @@
       <br> <br> <br>
       <div class="calendar">
 
-        <?php
-        require('calendar.php');
-        echo Calendar::getInterval(date('n.Y'), date('n.Y'));
-        ?>
-
       </div>
 
       </div>

@@ -18,7 +18,7 @@
       <nav id="menu" class="main-nav" role="navigation">
         <ul class="main-menu">
           <li><a href="user_profile.php">Профиль (ь)</a></li>
-          <li><a href="#courses">Курсы</a></li>
+          <li><a href="account.php">Кабинет</a></li>
           <li><a href="form_login.php">Войти</a></li>
         </ul>
       </nav>

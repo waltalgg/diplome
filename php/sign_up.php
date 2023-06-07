@@ -10,7 +10,7 @@
   if ($password1 === $password_c)
   {
     $password =  password_hash($password1, PASSWORD_DEFAULT);
-    mysqli_query($connect, "INSERT INTO 'all_users' ('id', 'username', 'email', 'password') VALUES (NULL, '$username', '$email', '$password')");
+    mysqli_query($connect, "INSERT INTO all_users (id_user, username, email, password) VALUES (NULL, '$username', '$email', '$password')");
     header('Location: index.php');
   }
   else
