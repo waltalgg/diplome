@@ -156,12 +156,15 @@ require('connect.php');
     	$name = '';
     	$teacher = '';
     	$content = '';
+    	$text_lesson = '';
+    	$link_lesson = '';
     	if(isset($lessons[$j]) && isset($lessons[$j][$h]))
     	{
     	   $name = $lessons[$j][$h]['name_lesson'];
     	   $teacher = $lessons[$j][$h]['username'];
     	   $id_lesson = $lessons[$j][$h]['id_lesson'];
-    	   
+    	   $text_lesson = $lessons[$j][$h]['text_lesson'];
+    	   $link_lesson = $lessons[$j][$h]['link_lesson'];
     	   $content = "
     	<div class='subject'>
        <div class='name'> $name </div>
@@ -169,7 +172,7 @@ require('connect.php');
       </div>";
     	}
     	
-    	 echo "<td onclick='fill(`{$id_lesson}`, `{$name}`)'>{$content}</td>";
+    	 echo "<td onclick='fill(`{$id_lesson}`, `{$name}`, `{$text_lesson}`, `{$link_lesson}`)'>{$content}</td>";
     	 
     	 
     	}
@@ -188,18 +191,23 @@ require('connect.php');
     height:100px;
     border: 1px solid;
     background-color: white;'>	
-	<form>
+	<form >
+	   <p style='font-size: 14px;'><b>Создание занятия</b></p>
 	  <input type='hidden' id='id_lesson' name='id_lesson'>
-	  <input type='text' id='name_lesson' name='name_lesson' > 
+	  <input type='text' id='name_lesson' name='name_lesson' placeholder= "Название занятия" size="30" > 
+	  <p style='font-size: 14px;'> <i>Текст занятия </i></p> <textarea id='text_lesson' name='text_lesson'> </textarea>
+	  <input type='text' id='link_lesson' name='link_lesson' placeholder= "Ссылка на занятие"> 
 	  <input type='submit' value='Сохранить'> 
 	  <input type='button' value='Отменить' onclick='modal.style.display = `none` '> 
 	</form>
 </div>
 
 <script>
- function fill(vid_lesson, vname_lesson){
+ function fill(vid_lesson, vname_lesson, vtext_lesson, vlink_lesson){
     name_lesson.value = vname_lesson;
     id_lesson.value = vid_lesson;
+    text_lesson.value = vtext_lesson;
+    link_lesson.value = vlink_lesson;
     modal.style.display = null; 
  }
  
