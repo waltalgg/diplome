@@ -24,7 +24,7 @@
 .calendar_month_table th
 		{
       border: 1px solid #ddd;
-      padding: 8px;
+      
       text-align: center;
 			cursor: pointer;
 			table-layout: fixed;
@@ -36,6 +36,12 @@
       color: white;
     }
 
+
+.td_cl
+{
+	width: 40px;
+	height: 40px;
+}
 
 .td_cl:hover
 	{

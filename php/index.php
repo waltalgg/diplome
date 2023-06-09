@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -17,9 +18,20 @@
       <a href="#menu" class="menu-link"></a>
       <nav id="menu" class="main-nav" role="navigation">
         <ul class="main-menu">
-          <li><a href="user_profile.php">Профиль (ь)</a></li>
-          <li><a href="account.php">Кабинет</a></li>
-          <li><a href="form_login.php">Войти</a></li>
+        <?php 
+        if(!isset($_SESSION['verif']))
+        {
+          echo "<li><a href='#'>Новости</a></li>
+          <li><a href='#courses'>Курсы</a></li>
+          <li><a href='form_login.php'>Войти</a></li>";
+        }
+        else
+        {
+          echo "<li><a href='user_profile.php'>Профиль</a></li>
+          <li><a href='account.php'>Кабинет</a></li>
+          <li><a href='logout.php'>Выйти</a></li>";
+        }
+          ?>
         </ul>
       </nav>
     </header>

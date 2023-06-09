@@ -15,6 +15,7 @@ if(mysqli_num_rows($check_user) > 0)
   if (password_verify($password1, $row['password'])) 
   {
   	$_SESSION['id_user'] = $row['id_user'];
+  	$_SESSION['verif'] = 1;
         header('Location: index.php');
         die();
   }

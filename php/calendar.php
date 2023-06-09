@@ -5,26 +5,10 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 error_reporting(0);
 
-if($_GET['month'])
-  $month = $_GET['month'];
-elseif($_GET['viewmonth'])
-  $month = $_GET['viewmonth'];
-else $month = date('m');
+$before_date = strtotime("$year-$month-01  -1 month");
+$start_date = mktime(0, 0, 0, $month, 1, $year);
+$next_date = strtotime("$year-$month-01  +1 month");
 
-if($_GET['year'])
-  $year = $_GET['year'];
-elseif($_GET['viewyear'])
-  $year = $_GET['viewyear'];
-else $year = date('Y');
-
-if($month == '12')
-{
-  $next_year = $year + 1;
-}
-else
-{
-  $next_year = $year;
-}
 
 $Month_r = array(
 "1" => "январь",
@@ -40,39 +24,13 @@ $Month_r = array(
 "11" => "ноябрь",
 "12" => "декабрь");
 
-$first_month = mktime(0, 0, 0, $month, 1, $year);
+
 
 $day_headings = array('Sunday', 'Monday', 'Tuesday',
 'Wednesday', 'Thursday', 'Friday', 'Saturday');
 
-$maxdays = date('t', $first_month);
-$date_info = getdate($first_month);
-$month = $date_info['mon'];
-$year = $date_info['year'];
-$today_month = date('m');
-$today_year = date('y');
+$maxdays = date('t', $start_date);
 
-if($month == '1')
-{
-  $last_year = $year-1;
-}
-else
-{
-  $last_year = $year;
-}
-
-$timestamp_last_month = $first_month - (86400);
-$last_month = date("m", $timestamp_last_month);
-
-if($month == '12')
-{
-  $next_month = '1';
-}
-
-else
-{
-  $next_month = $month+1;
-}
 
 $calendar = "
 <div class = 'calendar_month'>
@@ -80,12 +38,12 @@ $calendar = "
 <tr style='background: #5A8EB5;'>
     <td colspan='7'>
         <a style='margin-right: 40px; color: #ffffff; font-size: 18px; padding: 10px;'
-        href='$self?month=".$last_month."&year=".$last_year."'><<</a>
+        href='?month=".date('m', $before_date)."&year=".date('Y', $before_date)."&start_date2={$start_date2}'><<</a>
         <span style='display: inline-block; width: 125px; font-size: 14px; font-weight: bold; font-family: Comic Sans MS;'>
-       ".$Month_r[$month]." ".$year."
+       ".$Month_r[ (int)$month]." ".date('Y', $start_date)."
        </span>
         <a style='margin-left: 40px; color: #ffffff; font-size: 18px; padding: 10px;'
-        href='$self?month=".$next_month."&year=".$next_year."'>>></a>
+        href='?month=".date('m', $next_date)."&year=".date('Y', $next_date)."&start_date2={$start_date2}'>>></a>
     </td>
 </tr>
 <tr>
@@ -100,7 +58,7 @@ $calendar = "
 <tr>";
 
 
-$weekday = $date_info['wday'];
+$weekday = date('w', $start_date);
 $weekday = $weekday-1;
 if($weekday == -1)
 {
@@ -114,9 +72,8 @@ if($weekday > 0)
   $calendar .= "<td colspan='$weekday'> </td>";
 }
 
-
-$before_month = getdate($first_month-3600*24*$weekday);
-$day_url = "/account.php?month={$month}&year={$year}&day2={$before_month['mday']}&month2={$before_month['mon']}&year2={$before_month['year']}";
+ 
+$day_url = "?month={$month}&year={$year}&start_date2=".date('Y-m-d', $start_date-3600*24*$weekday);
 
 while($day <= $maxdays)
 {
@@ -124,14 +81,14 @@ while($day <= $maxdays)
     {
       $calendar .= "</tr><tr>";
       $weekday = 0;
-      $day_url = "/account.php?month={$month}&year={$year}&day2={$day}&month2={$month}&year2={$year}";
+      $day_url = "?month={$month}&year={$year}&start_date2={$year}-{$month}-{$day}";
     }
     
 $linkDate = mktime(0, 0, 0, $month, $day, $year);
 
     if($weekday == 5 || $weekday == 6)
       {
-        $red='style="color: red" ';
+        $red='color: red';
       }
       else
       {
@@ -139,8 +96,7 @@ $linkDate = mktime(0, 0, 0, $month, $day, $year);
       }
 
 $calendar .= "
-    <td class='td_cl'><span ".$red."><a href='{$day_url}'>{$day}</a></span>
-    </td>";
+    <td class='td_cl'><a href='{$day_url}'><div style='width: 100%; height: 100%; $red'>{$day}</div></a></td>";
     $day++;
   $weekday++;
 }
@@ -150,4 +106,4 @@ $calendar .= "<td colspan='" . (7 - $weekday) . "'> </td>";
 
 $calendar .= "</tr></table>
 <div class='today_style'>
-<a style='font-weight: bold;' href='$self?month=".$today_month."&year=".$today_year."'>Сегодня</a></div></div>";
+<a style='font-weight: bold;' href='?month=".date('m')."&year=".date('Y')."&start_date2={$start_date2}'>Сегодня</a></div></div>";

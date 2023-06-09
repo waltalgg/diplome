@@ -64,11 +64,16 @@ require('connect.php');
       Предстоящие занятия: <br>
       Прошедшие занятия: 
   </div>
-
+  
+	
     <?php
-     require('calendar.php');
-    echo $calendar;
+     if(isset($_GET['month']))  $month = $_GET['month'];
+     else $month = date('m');
 
+     if(isset($_GET['year']))  $year = $_GET['year']; 
+     else $year = date('Y');
+
+    
     if ( isset( $_GET['start_date2']) ){
        $start_date2 =  $_GET['start_date2']  ;
        $end_date2 = date('Y-m-d', strtotime($_GET['start_date2'].' +6 days'));
@@ -78,7 +83,12 @@ require('connect.php');
        $start_date2 = date('Y-m-d', strtotime('-'.$day.' days'));
        $end_date2 = date('Y-m-d', strtotime('+'.(6-$day).' days'));
     }
+        
     
+    require('calendar.php');
+    echo $calendar;
+
+
     
  
     if ( empty($id_group)) 
@@ -109,11 +119,22 @@ require('connect.php');
     	$lessons[$dow][$h] = $row;
     	
     }
+    
+   
+    
     echo "
+   
     <table class='calendar7'>
     <thead>
+    <div style='width: 10%; margin-left: 90%;  '> 
+	
+	</div>
+	<div style='width: 10%;  margin-left: 20%; '> 
+	
+	</div>
     <tr>
-     <th class='data'> </th>
+     <th class='data'> <a href='?month={$month}&year={$year}&start_date2=".date('Y-m-d', strtotime($start_date2.' -7 days'))."'>
+     <img src='../images/strelka2.png' width = 40px > </a> </th>
      <th class='data'>".date('d.m.y', strtotime($start_date2))."</th>
      <th class='data'>".date('d.m.y', strtotime($start_date2.' +1 days'))."</th>
      <th class='data'>".date('d.m.y', strtotime($start_date2.' +2 days'))."</th>
@@ -121,6 +142,7 @@ require('connect.php');
      <th class='data'>".date('d.m.y', strtotime($start_date2.' +4 days'))."</th>
      <th class='data'>".date('d.m.y', strtotime($start_date2.' +5 days'))."</th>
      <th class='data'>".date('d.m.y', strtotime($start_date2.' +6 days'))."</th> 
+     <th class='data'><a href='?month={$month}&year={$year}&start_date2=".date('Y-m-d', strtotime($start_date2.' +7 days'))."'><img src='../images/strelka1.png' width = 40px > </a></th> 
     </tr>
    </thead>";
     for($h = 9; $h <= 20; $h++)
@@ -151,6 +173,7 @@ require('connect.php');
     	 
     	 
     	}
+    	echo "<td class='time'>$h:00</td>";
     	echo "</tr>";
     }
     echo "
@@ -181,6 +204,7 @@ require('connect.php');
  }
  
 </script> 
+	
   </body>
 </html>
 
