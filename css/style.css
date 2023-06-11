@@ -82,7 +82,6 @@ a.menu-link
 .main-menu li a
 {
     padding: 10px 15px;
-    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: 700;
@@ -182,12 +181,9 @@ a.menu-link
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 15%;
+  margin-top: 5%;
   padding-top: 55px;
   padding-bottom: 55px;
-  background: rgba(199,199,199,0.1);
-  border-bottom: 1px solid;
-  border-top: 1px solid;
 
 }
 
@@ -199,10 +195,10 @@ a.menu-link
   text-align: center;
   transition: transform 0.3s ease-in-out;
   height: 550px;
-  background: rgba(211,222,222, 0.4);
+  background: rgba(233,233,233, 1);
   border: 1px inset #333;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   overflow-x: hidden;
 }
 
@@ -230,13 +226,13 @@ a.menu-link
   padding: 20px 0;
   text-align: justify;
   text-indent: 25px;
-  margin-bottom: 30px;
+  border-bottom: 2px inset #000;
 }
 
 .course:hover
 {
   cursor: pointer;
-  background: rgba(220,230,220, 0.7);
+  background: rgba(230,230,220, 0.7);
 }
 
 .course_text_style
@@ -246,6 +242,58 @@ a.menu-link
   color: #666;
   line-height: 1.5;
   text-align: justify;
+}
+
+
+.footer {
+  background-color: #333333;
+  color: #fff;
+  padding: 50px 0;
+}
+
+.footer h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.footer p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  margin-left: 60px;
+}
+
+.footer form {
+  margin-top: 20px;
+}
+
+.footer input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+
+.footer button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.footer button[type="submit"]:hover {
+  background-color: #0062cc;
+  cursor: pointer;
 }
 
 @media (max-width: 1000px)
@@ -258,4 +306,19 @@ a.menu-link
   {
     width: 100%;
   }
+}
+@media (max-width: 810px)
+{
+   .SCP
+   {
+     display: none;
+   }
+}
+
+@media (max-width: 530px)
+{
+   .scp_a
+   {
+     display: none;
+   }
 }

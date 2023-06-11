@@ -48,6 +48,21 @@
 		background-color: rgba(255,255,11, 0.3);
 	}
 
+.realtime
+{
+	  font-size: 16px;
+	  font-weight: bold;
+	  color: rgb(240,240,249);
+	  padding: 10px;
+	  border-radius: 5px;
+	  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.realtime:hover
+{
+	 cursor: pointer;
+}
+
 .info_user
 	{
 	  margin-top: 9%;
@@ -64,7 +79,21 @@
 		float: left;
 		text-align: justify;
 		overflow-x: hidden;
+  	flex-direction: column;
+  	background-color: #f2f2f2;
+  	padding: 20px;
+  	border-radius: 10px;
+  	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 	}
+
+.info_user a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.info_user a:hover {
+  text-decoration: underline;
+}
 
 .today_style
 {
@@ -82,6 +111,87 @@ width: 10px;
 height: 10px;
 border-radius: 50%;
 display: inline-block;
+}
+
+
+
+select
+ {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+	text-align: center;
+}
+
+select option
+{
+  font-size: 16px;
+  font-weight: bold;
+	text-align: left;
+
+}
+
+select:hover
+{
+	cursor: pointer;
+}
+
+form
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+form p
+{
+  margin: 10px 0;
+}
+
+form input[type="text"],
+form textarea
+{
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+form input[type="submit"],
+form input[type="button"]
+{
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+ form input[type="submit"]:hover,
+ form input[type="button"]:hover
+ {
+  background-color: #3e8e41;
 }
 
 	@media (max-width: 1570px)
@@ -113,5 +223,34 @@ display: inline-block;
 	.info_user
 	{
 		width: 30%;
+	}
+}
+
+@media (max-width: 1220px)
+{
+	form input[type="submit"],
+	form input[type="button"]
+	{
+		overflow-x: hidden;
+	}
+	.realtime
+	{
+		display: none;
+	}
+}
+
+@media (max-width: 800px)
+{
+	.logo
+	{
+		display: none;
+	}
+}
+
+@media (max-width: 700px)
+{
+	.calendar7
+	{
+		overflow-x: scroll;
 	}
 }

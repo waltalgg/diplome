@@ -58,7 +58,7 @@ require('connect.php');
         <div class="info-label">Ваши группы:</div>
         <div class="info-value">
           <?php
-          $sql = "SELECT name_group FROM all_groups inner join group_content ON id_user = '$_SESSION[id_user]'";
+          $sql = "SELECT name_group FROM all_groups inner join group_content using(id_group) WHERE id_user = '$_SESSION[id_user]'";
           $result = mysqli_query($connect, $sql);
           while ($row = mysqli_fetch_array($result))
           {

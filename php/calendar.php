@@ -31,7 +31,6 @@ $day_headings = array('Sunday', 'Monday', 'Tuesday',
 
 $maxdays = date('t', $start_date);
 
-
 $calendar = "
 <div class = 'calendar_month'>
 <table class='calendar_month_table' style='width: 330px;'>
@@ -72,18 +71,19 @@ if($weekday > 0)
   $calendar .= "<td colspan='$weekday'> </td>";
 }
 
- 
+$today_day = date(d);
 $day_url = "?month={$month}&year={$year}&start_date2=".date('Y-m-d', $start_date-3600*24*$weekday);
 
 while($day <= $maxdays)
 {
+
     if($weekday == 7)
     {
       $calendar .= "</tr><tr>";
       $weekday = 0;
       $day_url = "?month={$month}&year={$year}&start_date2={$year}-{$month}-{$day}";
     }
-    
+
 $linkDate = mktime(0, 0, 0, $month, $day, $year);
 
     if($weekday == 5 || $weekday == 6)

@@ -9,7 +9,7 @@ require('connect.php');
 
     <link rel="stylesheet" href="../css/calendar_7day.css">
     <link rel="stylesheet" href="../css/style.css">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
       body{background-image: url(../images/back_cal.jpg);}
     </style>
@@ -21,18 +21,18 @@ require('connect.php');
       </div>
       <a href="#menu" class="menu-link"></a>
       <nav id="menu" class="main-nav" role="navigation">
+
         <ul class="main-menu">
+          <li><a class='realtime' style='margin-right: 100px;'>
+            <span style='font-size: 14px; color: yellow;'>Cегодня: </span><?php  echo date("d.m.Y"); ?></a></li>
           <li><a href="index.php">Вернуться на главную</a></li>
         </ul>
       </nav>
     </header>
 
-
-
-
   <div class="info_user">
     <p style='margin-bottom: 2px;'>id пользователя: <?=$_SESSION['id_user'];?> </p>
-  <p style='margin-bottom: 2px;'>  Имя пользователя: <a href="user_profile.php">
+    <p style='margin-bottom: 2px;'>  Имя пользователя: <a href="user_profile.php">
       <?php
       $sql = "SELECT username FROM all_users WHERE id_user = '$_SESSION[id_user]'";
       $result = mysqli_query($connect, $sql);
@@ -41,8 +41,8 @@ require('connect.php');
           echo $row['username'];
       }
       ?> </a>  </p>
-    <p style='margin-bottom: 2px;'> Ваши группы: <br>  <?php
-      $sql = "SELECT name_group FROM all_groups inner join group_content ON id_user = '$_SESSION[id_user]'";
+      <p style='margin-bottom: 2px;'> Ваши группы: <br>  <?php
+      $sql = "SELECT name_group FROM all_groups inner join group_content using(id_group) WHERE id_user = '$_SESSION[id_user]'";
       $result = mysqli_query($connect, $sql);
 
       while ($row = mysqli_fetch_array($result))
@@ -56,7 +56,7 @@ require('connect.php');
   </div>
 
   <div class="info_user" style="width:20%; height:150px; margin-bottom: 0; margin-left: 18%;">
-    <p style='margin-bottom: 10px; font-size: 20px;'><b> <i>Выберите группу:</i> </b> </p>
+    <p style='margin-bottom: 10px; font-size: 20px; text-align: center;'><b><i>Список групп:</i> </b> </p>
     <form method='get'>
   	<select name='id_group'>
 
@@ -79,8 +79,6 @@ require('connect.php');
 
   	<input type="submit" value="Выбрать группу"></input>
    </form>
-   <p style='margin-top: 20px;'>  Предстоящие занятия: </p>
-   <p style='margin-top: 5px;'>   Прошедшие занятия:  </p>
   </div>
 </div>
 
@@ -92,11 +90,13 @@ require('connect.php');
      else $year = date('Y');
 
 
-    if ( isset( $_GET['start_date2']) ){
-       $start_date2 =  $_GET['start_date2']  ;
+    if ( isset( $_GET['start_date2']) )
+    {
+       $start_date2 =  $_GET['start_date2'];
        $end_date2 = date('Y-m-d', strtotime($_GET['start_date2'].' +6 days'));
     }
-    else{
+    else
+    {
        $day = date('w')-1;
        $start_date2 = date('Y-m-d', strtotime('-'.$day.' days'));
        $end_date2 = date('Y-m-d', strtotime('+'.(6-$day).' days'));
@@ -132,12 +132,43 @@ require('connect.php');
     	$lessons[$dow] = array();
     	}
     	$lessons[$dow][$h] = $row;
-
     }
 
+    ?>
+    <script>
+    $(function()
+    {
+  var form = $('.fill_form');
+  var isDragging = false;
+  var mouseOffset = { x: 0, y: 0 };
 
+  form.mousedown(function(e)
+  {
+    isDragging = true;
+    mouseOffset.x = e.pageX - form.offset().left;
+    mouseOffset.y = e.pageY - form.offset().top;
+  });
 
-    echo "
+  form.mousemove(function(e)
+  {
+    if (isDragging)
+    {
+      form.offset(
+        {
+        left: e.pageX - mouseOffset.x,
+        top: e.pageY - mouseOffset.y
+      });
+    }
+  });
+
+  form.mouseup(function()
+  {
+    isDragging = false;
+  });
+});
+
+    </script>
+    <?php echo "
     <table class='calendar7'>
     <thead>
     <div style='width: 10%; margin-left: 90%;  '>
@@ -156,7 +187,8 @@ require('connect.php');
      <th class='data'>".date('d.m.y', strtotime($start_date2.' +4 days'))."</th>
      <th class='data'>".date('d.m.y', strtotime($start_date2.' +5 days'))."</th>
      <th class='data'>".date('d.m.y', strtotime($start_date2.' +6 days'))."</th>
-     <th class='data'><a href='?month={$month}&year={$year}&start_date2=".date('Y-m-d', strtotime($start_date2.' +7 days'))."'><img src='../images/strelka1.png' width = 40px > </a></th>
+     <th class='data'><a href='?month={$month}&year={$year}&start_date2=".date('Y-m-d', strtotime($start_date2.' +7 days'))."'><img src='../images/strelka1.png' width = 40px >
+      </a></th>
     </tr>
    </thead>";
     for($h = 9; $h <= 20; $h++)
@@ -195,17 +227,18 @@ require('connect.php');
 
 
     ?>
-<div class='calendar7' id='modal' style='display:none;position: fixed; /* or absolute */
+<div id='modal' style='display:none; position: relative;
     top: 50%;
     left: 50%;
     width: 200px;
     height:100px;
     border: 1px solid;
     background-color: white;'>
-	<form >
+	<form class='fill_form' id='fill_form' action='create_lesson.php' method="POST">
 	   <p style='font-size: 14px;'><b>Создание занятия</b></p>
 	  <input type='hidden' id='id_lesson' name='id_lesson'>
 	  <input type='text' id='name_lesson' name='name_lesson' placeholder= "Название занятия" size="30" >
+    <input type='text' id='group_lesson' name='group_lesson' placeholder= "Выберите группу" size="30" >
 	  <p style='font-size: 14px;'> <i>Текст занятия </i></p> <textarea id='text_lesson' name='text_lesson'> </textarea>
 	  <input type='text' id='link_lesson' name='link_lesson' placeholder= "Ссылка на занятие">
 	  <input type='submit' value='Сохранить'>
@@ -220,8 +253,8 @@ require('connect.php');
     text_lesson.value = vtext_lesson;
     link_lesson.value = vlink_lesson;
     modal.style.display = null;
- }
 
+ }
 </script>
   </body>
 </html>

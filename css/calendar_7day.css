@@ -15,6 +15,12 @@
   color: white;
 }
 
+.data:hover
+{
+  cursor: pointer;
+  background-color: rgba(76,150,90,1);
+}
+
 .time
 {
   font-size: 18px;
@@ -35,6 +41,12 @@
 {
  background-color: #4CAF50;
  font-weight: bold;
+}
+
+.calendar7 td:hover
+{
+   background-color: rgba(204,255,153,0.7);
+   cursor: pointer;
 }
 
 .subject
@@ -60,5 +72,4 @@
 .subject:hover
 {
   cursor: pointer;
-  background-color: rgba(66,255,0,0.4);
 }
