@@ -94,17 +94,3 @@ h1
 {
   flex-grow: 1;
 }
-
-.calendar
-{
-  text-align: center;
-  padding-top: 55px;
-  border: 1px groove;
-  border-radius: 10px;
-}
-
-.calendar:hover
-{
-  transform: scale(1.01);
-  cursor: pointer;
-}

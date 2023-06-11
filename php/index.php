@@ -1,5 +1,5 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
+<?php session_start();?>
 <html lang="en" dir="ltr">
   <head>
     <link rel="stylesheet" href="../css/style.css">
@@ -18,85 +18,119 @@
       <a href="#menu" class="menu-link"></a>
       <nav id="menu" class="main-nav" role="navigation">
         <ul class="main-menu">
-        <?php 
-        if(!isset($_SESSION['verif']))
-        {
-          echo "<li><a href='#'>Новости</a></li>
-          <li><a href='#courses'>Курсы</a></li>
-          <li><a href='form_login.php'>Войти</a></li>";
-        }
-        else
-        {
-          echo "<li><a href='user_profile.php'>Профиль</a></li>
-          <li><a href='account.php'>Кабинет</a></li>
-          <li><a href='logout.php'>Выйти</a></li>";
-        }
-          ?>
+        <?php if(isset($_SESSION['auth_token']))
+           {
+               echo "<li><a href='user_profile.php'>Профиль</a></li>
+               <li><a href='account.php'>Кабинет</a></li>
+               <li><a href='logout.php'>Выйти</a></li>";
+             }
+
+            if(!isset($_SESSION['auth_token']))
+             {
+               echo "<li><a href='#courses'>Курсы</a></li>
+                     <li><a href='#'>Новости</a></li>
+                     <li><a href='form_login.php'>Войти</a></li>";
+             }
+            ?>
+
         </ul>
       </nav>
     </header>
 
     <div id="news" class="news">
       <h2 style="text-align: center;">Последние новости</h2>
-      <p style="text-align: center;">Последние и актуальные новости о нашей школе.</p>
+      <p style="text-align: center;">Последние и актуальные новости о нашей школе!</p>
 
       <div class="news-template">
-        <h3><a href="#">Заголовок новости</a></h3>
-        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiustion ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in r</p>
-        <small> Дата: 01.01.2023</small>
+        <h3>Запуск нового бесплатного курса</h3>
+        <p> <em> SCP </em> School запускает бесплатный курс по программированию для детей-сирот, чтобы помочь им развить свои творческие и логические способности и приобрести новые навыки.
+          Мы уверены, что наш курс по программированию поможет детям-сиротам обрести уверенность в своих силах и открыть для себя новые возможности в жизни.
+           Мы гордимся тем, что можем внести свой вклад в образование и развитие детей, которые в наше время находятся в трудной жизненной ситуации. <a href="#">Подробнее...</a> </p>
+        <small> Дата: 24.07.2023</small>
       </div>
       <div class="news-template">
-        <h3><a href="#">Заголовок новости</a></h3>
-        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiustion ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in r</p>
-        <small> Дата: 01.01.2023</small>
+        <h3> <em> SCP </em>School  запускает курс по космической архитектуре</h3>
+        <p> <em>SCP </em> School  запускает новый курс по космической архитектуре, который поможет студентам изучить основы проектирования и создания космических станций, кораблей и даже колоний на других планетах.
+          Курс будет включать в себя обучение основам физики, математики, инженерии и дизайна, необходимых для создания инновационных решений в области космической архитектуры.
+          Студенты также будут иметь возможность работать над реальными проектами, используя последние технологии и инструменты, которые используются в этой области.
+          Мы уверены, что наш курс по космической архитектуре поможет студентам раскрыть свой творческий потенциал и развить свои профессиональные навыки в этой захватывающей области.
+          А кто знает, может быть, один из наших студентов станет основоположником будущих космических проектов. <a href="#">Подробнее...</a></p>
+        <small> Дата: 15.07.2023</small>
       </div>
       <div class="news-template">
-        <h3><a href="#">Заголовок новости</a></h3>
-        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiustion ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in r</p>
-        <small> Дата: 01.01.2023</small>
+        <h3><em> SCP </em>School запускает новый курс по робототехнике для детей и подростков</h3>
+        <p> В этом курсе ученики смогут научиться создавать и программировать роботов, используя такие инструменты, как Arduino и Raspberry Pi.
+          Курс будет включать в себя лекции, практические занятия и проекты, которые помогут ученикам развить свои навыки в области робототехники. <a href="#">Подробнее...</a></p>
+        <small> Дата: 12.07.2023</small>
       </div>
-
+    <a href ="#" style="float: right; margin: -5px;">  Архив новостей </a>
     </div>
+
 
     <div id="courses" class="courses-block">
       <div class="course">
         <h3><a href="#">Курс по HTML и CSS</a></h3>
         <div class="course-block">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-           incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          rure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum.
+        <p class='course_text_style'>  Хотите создавать красивые и удобные сайты? Присоединяйтесь к нашим курсам по HTML и CSS! Мы научим вас создавать уникальные и интуитивно понятные веб-страницы,
+          используя самые современные технологии и инструменты. Наши опытные преподаватели помогут вам освоить основы HTML и CSS, а также поделиться лучшими практиками
+          и советами по созданию качественного веб-контента. Не упустите свой шанс научиться создавать сайты, которые будут привлекать внимание и удобны в использовании.
+          Записывайтесь на наши курсы прямо сейчас и начинайте свой путь к успеху в веб-разработке!</p>
         </div>
       </div>
 
       <div class="course">
         <h3><a href="#">Курс по JavaScript</a></h3>
         <div class="course-block">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-           incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          rure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum.
+        <p class='course_text_style'>  Курсы по Java Script - это идеальный способ изучить один из самых популярных языков программирования в мире.
+           На наших курсах вы получите все необходимые знания и навыки, чтобы создавать интерактивные веб-страницы, приложения и многое другое.
+           Наши опытные преподаватели помогут вам освоить фундаментальные концепции языка, включая переменные, условные операторы, функции и многое другое.
+           Вы также изучите библиотеки и фреймворки, такие как jQuery и React, которые помогут вам создавать более сложные приложения. Присоединяйтесь к нашим курсам и станьте экспертом в Java Script!</p>
       </div>
     </div>
 
       <div class="course">
         <h3><a href="#">Курс по Python</a></h3>
         <div class="course-block">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-           incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          rure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum.
+        <p class='course_text_style'>   Курсы по Python - это отличная возможность начать свой путь в мире программирования. Python - это один из самых популярных языков программирования в мире,
+           и он используется во многих областях, включая разработку веб-приложений, научные исследования, анализ данных и многое другое.
+           Наши курсы помогут вам освоить основные концепции языка, включая переменные, условные операторы, циклы и функции. Вы также изучите библиотеки и фреймворки,
+           такие как NumPy, Pandas и Django, которые помогут вам  создавать более сложные приложения. Наши опытные преподаватели помогут вам улучшить свои навыки
+           программирования и готовиться к будущей карьере в IT-индустрии. Присоединяйтесь к нашим курсам и начните свой путь в мире Python!</p>
         </div>
       </div>
-    </div>
 
+      <div class="course">
+        <h3><a href="#">Курс по Python</a></h3>
+        <div class="course-block">
+          <p class='course_text_style'>  Курсы по Python - это отличная возможность начать свой путь в мире программирования. Python - это один из самых популярных языков программирования в мире,
+           и он используется во многих областях, включая разработку веб-приложений, научные исследования, анализ данных и многое другое.
+           Наши курсы помогут вам освоить основные концепции языка, включая переменные, условные операторы, циклы и функции. Вы также изучите библиотеки и фреймворки,
+           такие как NumPy, Pandas и Django, которые помогут вам  создавать более сложные приложения. Наши опытные преподаватели помогут вам улучшить свои навыки
+           программирования и готовиться к будущей карьере в IT-индустрии. Присоединяйтесь к нашим курсам и начните свой путь в мире Python!</p>
+        </div>
+      </div>
 
-    <div class="calendar">
-      <p class="calendar-z"> Календарь занятий:</p>
-      <?php
-      require('calendar.php');
-      echo Calendar::getInterval(date('n.Y'), date('n.Y'));
-      ?>
+      <div class="course">
+        <h3><a href="#">Курс по Python</a></h3>
+        <div class="course-block">
+          <p class='course_text_style'>   Курсы по Python - это отличная возможность начать свой путь в мире программирования. Python - это один из самых популярных языков программирования в мире,
+           и он используется во многих областях, включая разработку веб-приложений, научные исследования, анализ данных и многое другое.
+           Наши курсы помогут вам освоить основные концепции языка, включая переменные, условные операторы, циклы и функции. Вы также изучите библиотеки и фреймворки,
+           такие как NumPy, Pandas и Django, которые помогут вам  создавать более сложные приложения. Наши опытные преподаватели помогут вам улучшить свои навыки
+           программирования и готовиться к будущей карьере в IT-индустрии. Присоединяйтесь к нашим курсам и начните свой путь в мире Python!</p>
+        </div>
+      </div>
+
+      <div class="course">
+        <h3><a href="#">Курс по Python</a></h3>
+        <div class="course-block">
+        <p class='course_text_style'>  Курсы по Python - это отличная возможность начать свой путь в мире программирования. Python - это один из самых популярных языков программирования в мире,
+           и он используется во многих областях, включая разработку веб-приложений, научные исследования, анализ данных и многое другое.
+           Наши курсы помогут вам освоить основные концепции языка, включая переменные, условные операторы, циклы и функции. Вы также изучите библиотеки и фреймворки,
+           такие как NumPy, Pandas и Django, которые помогут вам  создавать более сложные приложения. Наши опытные преподаватели помогут вам улучшить свои навыки
+           программирования и готовиться к будущей карьере в IT-индустрии. Присоединяйтесь к нашим курсам и начните свой путь в мире Python!</p>
+        </div>
+      </div>
     </div>
 
     <br><br><br><br>  <br><br><br><br>

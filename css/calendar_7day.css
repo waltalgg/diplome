@@ -2,7 +2,7 @@
 {
  width: 70%;
  border-collapse: collapse;
- margin-top: 5%;
+ margin-top: 2%;
  margin-right: 65px;
  float: right;
  box-shadow: 0 0 30px rgba(247,247,247,0.9);
@@ -62,4 +62,3 @@
   cursor: pointer;
   background-color: rgba(66,255,0,0.4);
 }
-
