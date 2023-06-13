@@ -1,9 +1,7 @@
 <link rel="stylesheet" href="../css/style_calendar.css">
 <?php
 
-error_reporting(E_ALL & ~E_NOTICE);
 
-error_reporting(0);
 
 $before_date = strtotime("$year-$month-01  -1 month");
 $start_date = mktime(0, 0, 0, $month, 1, $year);
@@ -71,7 +69,7 @@ if($weekday > 0)
   $calendar .= "<td colspan='$weekday'> </td>";
 }
 
-$today_day = date(d);
+$today_day = date('d');
 $day_url = "?month={$month}&year={$year}&start_date2=".date('Y-m-d', $start_date-3600*24*$weekday);
 
 while($day <= $maxdays)

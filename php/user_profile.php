@@ -20,7 +20,7 @@ require('connect.php');
     <div class="profile-info">
       <div>
 
-          <?php  if($_SESSION['edit_profile'] != 1)
+          <? if($_SESSION['edit_profile'] != 1)
           {?>
           <a href='edit_profile.php' class='button'>Редактировать профиль</a>
       <?}
@@ -30,7 +30,7 @@ require('connect.php');
           <a href='edit_profile.php' class='button'>Отменить редактирование</a>
           <?}?>
         <a class="button" style ='background-color: green; margin-left: 5px;' href="account.php"> Личный кабинет </a>
-        <?php  if ($_SESSION['id_user'] == 8)
+        <?  if ($_SESSION['id_user'] == 8)
           {?>
              <a class="button" style ='background-color: orange; margin-left: 5px;' href='admin_panel.php'> Панель админа </a> 
     <? } ?>
@@ -92,9 +92,7 @@ require('connect.php');
               unset($_SESSION['success']);
           }?></div>
         </div>
-    <?php  }
-
-    else
+ <?php } else
     {  ?>
       <form action='edit_profile.php' method="POST">
          <p style='font-size: 14px;'><b>Изменить данные</b></p>

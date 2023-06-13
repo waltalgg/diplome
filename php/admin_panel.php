@@ -26,9 +26,9 @@
   			?>
   			<tr>
   				<td><?=$row['id_group'];?></td>
-          <td><?=$row['id_user'];?></td>
+          			<td><?=$row['id_user'];?></td>
   			</tr>
-    <? }?>
+    <?php }?>
   </tbody>
 </table>
   </body>
