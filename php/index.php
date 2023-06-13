@@ -4,7 +4,6 @@
   <head>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/style_index.css">
-    <link rel="stylesheet" href="../css/style_calendar.css">
     <meta charset="utf-8">
     <title></title>
 
@@ -27,8 +26,9 @@
 
             if(!isset($_SESSION['auth_token']))
              {
-               echo "<li><a href='#courses' class='scp_a'>Курсы</a></li>
-                     <li><a href='#' class='scp_a'>Новости</a></li>
+               echo "<li ><a href='#foo' class='scp_a'>О нас</a></li>
+                     <li ><a href='#courses' class='scp_a'>Курсы</a></li>
+                     <li ><a href='#' class='scp_a'>Новости</a></li>
                      <li><a href='form_login.php'>Войти</a></li>";
              }
             ?>
@@ -134,7 +134,7 @@
     </div>
 
 
-<footer class="footer">
+<footer class="footer" id="foo">
         <h3>О SCP</h3>
         <p>SCP - это онлайн-школа, которая предоставляет курсы по различным темам, таким как программирование, дизайн, маркетинг и многое другое.</p>
       </div>

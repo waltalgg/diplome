@@ -307,7 +307,7 @@ a.menu-link
     width: 100%;
   }
 }
-@media (max-width: 810px)
+@media (max-width: 950px)
 {
    .SCP
    {
@@ -315,10 +315,11 @@ a.menu-link
    }
 }
 
-@media (max-width: 530px)
+@media (max-width: 650px)
 {
-   .scp_a
+  .scp_a
    {
      display: none;
    }
+
 }
