@@ -195,7 +195,7 @@ require('connect.php');?>
     	<div class='subject'>
        <div class='name'> $name </div>
        <div class='teacher'> $teacher </div>
-       <div class='group_student'> <small>{$name_group}</small></div>
+       
       </div>";
     	}
     	 echo "<td onclick='$onclick'>{$content}</td>";

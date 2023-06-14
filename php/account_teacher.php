@@ -6,16 +6,21 @@ require('connect.php');?>
   	<select name='select_id_group'>
 
   		<?php
-  		$id_group = $_GET['select_id_group'];
+  		if (isset($_GET['delete_lesson']))
+		  {
+			  $sql = "DELETE FROM all_lessons WHERE id_lesson = ".(int)$_GET['id_lesson']." AND id_teacher = {$_SESSION['id_user']}";
+			  mysqli_query($connect, $sql);
+		  }
+  		$select_id_group = $_GET['select_id_group'];
   		$selected = '';
-  		if ($id_group == 0) $selected = 'selected';
+  		if ($select_id_group == 0) $selected = 'selected';
   		echo "<option value='0' $selected>Не выбрано</option>";
   		$sql_group = 'SELECT * FROM all_groups where deleted_group = false AND id_group != 1';
   		$group_query = mysqli_query($connect, $sql_group);
   		while($row =  mysqli_fetch_assoc($group_query) )
   		{
   		$selected = '';
-  		if ($id_group == $row['id_group']) $selected = 'selected';
+  		if ($select_id_group == $row['id_group']) $selected = 'selected';
   		 echo "<option value='{$row['id_group']}' $selected>{$row['name_group']}</option>";
   		}
   		?>
@@ -51,7 +56,7 @@ require('connect.php');?>
     require('calendar.php');
     echo $calendar;
 
-    if ( empty($id_group))
+    if ( empty($select_id_group))
     {
 	    $sql_calendar7 = "SELECT *, DAYOFWEEK(date_lesson) as dow, HOUR(date_lesson) as h
  FROM all_lessons ".
@@ -60,12 +65,12 @@ require('connect.php');?>
     }
     else
     {
-    	$sql_calendar7 = "SELECT *, DAYOFWEEK(date_lesson) as dow, HOUR(date_lesson) as h FROM all_lessons inner join all_users ON id_teacher = id_user ".
-		 "where (id_teacher ={$_SESSION['id_user']} OR id_group = $id_group) AND ".
+    	$sql_calendar7 = "SELECT *, DAYOFWEEK(date_lesson) as dow, HOUR(date_lesson) as h 
+    	FROM all_lessons inner join all_users ON id_teacher = id_user ".
+		 "where (id_teacher ={$_SESSION['id_user']} OR id_group = $select_id_group) AND ".
 		 "date_lesson between '$start_date2' and '$end_date2' ";
 
     }
-
     $result = mysqli_query($connect, $sql_calendar7);
     $lessons = array();
     while($row =  mysqli_fetch_assoc($result))
@@ -76,7 +81,6 @@ require('connect.php');?>
 		{
 		  $dow=6;
 		}
-
     	$h = $row['h'];
     	if (!isset($lessons[$dow]))
     	{
@@ -89,7 +93,7 @@ require('connect.php');?>
     <script>
     $(function()
     {
-  var form = $('.fill_form');
+  var form = $('#modal');
   var isDragging = false;
   var mouseOffset = { x: 0, y: 0 };
 
@@ -168,6 +172,9 @@ require('connect.php');?>
     	$link_lesson = '';
     	$id_group = '';
     	$date_lesson = date('Y-m-d',$dates[$j-1])." $h:00:00";
+    	$onclick ="fill(`{$id_lesson}`, `{$name}`, `{$text_lesson}`, `{$link_lesson}`, 
+    	 `{$date_lesson}`, `{$id_group}`)";
+    	
     	if(isset($lessons[$j]) && isset($lessons[$j][$h]))
     	{
     	   $name = $lessons[$j][$h]['name_lesson'];
@@ -175,17 +182,29 @@ require('connect.php');?>
 			   $teacher = $lessons[$j][$h]['username'];
 		   }
     	   $id_lesson = $lessons[$j][$h]['id_lesson'];
+    	   
     	   $text_lesson = $lessons[$j][$h]['text_lesson'];
     	   $link_lesson = $lessons[$j][$h]['link_lesson'];
     	   $id_group = $lessons[$j][$h]['id_group'];
+    	   
+    	   $sql = "SELECT name_group FROM all_groups inner join all_lessons using(id_group) WHERE id_lesson = '$id_lesson'";
+		   $result = mysqli_query($connect, $sql);
+		   $row = mysqli_fetch_array($result);
+		   $name_group= $row['name_group']; 
+		   $onclick ="fill(`{$id_lesson}`, `{$name}`, `{$text_lesson}`, `{$link_lesson}`, 
+    	   `{$date_lesson}`, `{$id_group}`)";
+			if ($_SESSION['id_user'] != $lessons[$j][$h]['id_teacher'])
+			{
+				$onclick = '';
+			}
     	   $content = "
     	<div class='subject'>
        <div class='name'> $name </div>
        <div class='teacher'> $teacher </div>
+       <div class='group_student'> <small>{$name_group}</small></div>
       </div>";
     	}
-    	 echo "<td onclick='fill(`{$id_lesson}`, `{$name}`, `{$text_lesson}`, `{$link_lesson}`, 
-    	 `{$date_lesson}`, `{$id_group}`)'>{$content}</td>";
+    	 echo "<td onclick='$onclick'>{$content}</td>";
     	}
     	echo "<td class='time'>$h:00</td>";
     	echo "</tr>";
@@ -195,18 +214,18 @@ require('connect.php');?>
 
 
     ?>
-<div id='modal' style='display:none; position: relative;
+<div id='modal' style='display:none;'>
+	<form class='fill_form' style='position: relative;
     top: 50%;
     left: 50%;
-    width: 200px;
-    height:100px;
+    
     border: 1px solid;
-    background-color: white;'>
-	<form class='fill_form' id='fill_form' action='create_lesson.php' method="POST">
+    background-color: white;' id='fill_form' action='create_lesson.php' method="POST">
 	   <p style='font-size: 14px;'><b>Создание занятия</b></p>
 	  <input type='hidden' id='id_lesson' name='id_lesson'>
 	  <input type='hidden'  name='select_id_group' value='<?=(int)$_GET['select_id_group']?>'>
 	  <input type='text' id='name_lesson' name='name_lesson' placeholder= "Название занятия" size="30" >
+	  <p>Выберите группу: </p>
       <select id='id_group' name='id_group'  >
 		  <?php 
   		echo "<option value='0'>Не выбрано</option>";
@@ -221,7 +240,9 @@ require('connect.php');?>
 	  <input type='text' id='link_lesson' name='link_lesson' placeholder= "Ссылка на занятие">
 	  <input type='hidden' id='date_lesson' name='date_lesson'> 
 	  <input type='submit' value='Сохранить' onclick='onChange(event)'>
-	  <input type='button' value='Отменить' onclick='modal.style.display = `none` '>
+	  <input type='button' style='background: blue;'value='Подробнее' onclick='go_to_lesson_panel()'>
+	  <input type='button' style='background: orange;'value='Отменить' onclick='modal.style.display = `none` '>
+	  <input type='button' style='background: red;' id='delete_lesson' value='Удалить' onclick='fdelete_lesson()'>
 	</form>
 </div>
 
@@ -235,11 +256,33 @@ require('connect.php');?>
     date_lesson.value = vdate_lesson;
     id_group.value = vid_group; 
     modal.style.display = null;
-
+    if (vid_lesson == '')
+	{
+		delete_lesson.style.display = 'none';
+	}
+	else
+	{
+		delete_lesson.style.display = 'block';
+	}
+ }
+ 
+ function fdelete_lesson()
+ {
+		window.location = '?id_lesson='+id_lesson.value+'&delete_lesson=1';
+ }
+ 
+ function go_to_lesson_panel()
+ {
+	 window.location = 'lesson_panel.php?date_lesson='+date_lesson.value+'&id_lesson='+id_lesson.value+'&select_id_group=<?=$select_id_group;?>';
  }
  function onChange(e)
  {
 	  e.preventDefault();
+	  if(id_group.value == 0)
+	  {
+		  alert('Группа не выбрана!');
+		  return;
+	  }
 	  var data = new FormData()
 
 	  data.append('id_lesson', id_lesson.value)
