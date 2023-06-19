@@ -13,7 +13,7 @@ $id = $_SESSION['id_user'];
 
 	$sql = "SELECT * FROM `all_lessons` WHERE `id_group`='$id_group' and `date_lesson`='$date_lesson' and `id_lesson` <> {$id_lesson}";
 	$result = mysqli_query($connect, $sql);
-	
+
 		if ($id_lesson > 0)
 		{
 			$sql = "UPDATE `all_lessons` SET `name_lesson`='$name_lesson',
@@ -28,11 +28,8 @@ $id = $_SESSION['id_user'];
 		VALUES (NULL, '$name_lesson' ,'$id','$id_group','$date_lesson','$text_lesson','$link_lesson')";
 		mysqli_query($connect, $sql);
 		}
-		
+
   $select_id_group = (int)$_POST['select_id_group'];
   header('Location: account.php?select_id_group='.$select_id_group);
-
-
-
 
  ?>

@@ -1,12 +1,8 @@
 <link rel="stylesheet" href="../css/style_calendar.css">
 <?php
-
-
-
 $before_date = strtotime("$year-$month-01  -1 month");
 $start_date = mktime(0, 0, 0, $month, 1, $year);
 $next_date = strtotime("$year-$month-01  +1 month");
-
 
 $Month_r = array(
 "1" => "январь",
@@ -53,7 +49,6 @@ $calendar = "
     <td>Вс</td>
 </tr>
 <tr>";
-
 
 $weekday = date('w', $start_date);
 $weekday = $weekday-1;
